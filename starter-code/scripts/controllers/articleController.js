@@ -20,7 +20,7 @@
     Article.findWhere('id', ctx.params.id, articleData);
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // COMMENT: What does this method do?  What is it's execution path? This method is in the middleware chain for the /author/:authorName route, and is called before the articlesController.index. It is passing articlesByAuthor as a parameter for ctx.articles. Article.findWhere then retrieves the author name from the author field from the webdb table and stores that value on the authorName param of the context object.
   articlesController.loadByAuthor = function(ctx, next) {
     var authorData = function(articlesByAuthor) {
       ctx.articles = articlesByAuthor;
@@ -32,7 +32,7 @@
     );
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // COMMENT: What does this method do?  What is it's execution path? This method is a middleware function in the /category/:categoryName route, and is called before the articlesController.index. It sets the ctx.articles param equal to the functions argument.
   articlesController.loadByCategory = function(ctx, next) {
     var categoryData = function(articlesInCategory) {
       ctx.articles = articlesInCategory;
